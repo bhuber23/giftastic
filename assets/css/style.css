@@ -19,3 +19,16 @@ h1 {
     margin: auto;
     margin-bottom: 20px;
 }
+
+#add-gif {
+    margin-bottom: 10px;
+}
+
+.gif {
+    margin-bottom: 10px;
+    
+}
+
+p {
+    margin-bottom: -3px;
+}

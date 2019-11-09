@@ -52,9 +52,9 @@ $(document.body).on("click", ".game-button", function() {
         var results = response.data;
         for (var i = 0; i < results.length; i++) {
             if (results[i].rating !== "r") {
-                var gifDiv = $("<div>")
+                var gifDiv = $("<div id='results-div'>")
                 var rating = results[i].rating;
-                var p = $("<p>").text("Rating: " + rating);
+                var p = $("<p>").text("Rating: " + rating.toUpperCase());
                 var gameImage = $("<img class='gif'>");
 
 
