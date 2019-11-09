@@ -2,6 +2,20 @@ body {
     background: url(../images/mario-background.jpg);
     background-position: left;
     background-repeat: repeat;
-    
+    background-attachment: fixed;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+.game-button {
+    margin: 10px;
+}
+
+.container {
+    margin: auto;
+}
+
+h1 {
+    margin: auto;
+    margin-bottom: 20px;
+}

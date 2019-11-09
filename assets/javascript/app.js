@@ -1,10 +1,10 @@
 //Define array with the default buttons
 var games = [
-    "Pokemon",
-    "Mario",
-    "Super Smash Brothers",
-    "Legend of Zelda",
-    "Mario Kart"
+    "pokemon",
+    "mario",
+    "smash brothers",
+    "legend of zelda",
+    "mario kart"
 ];
 
 console.log(games);
@@ -19,21 +19,27 @@ for (var i=0; i < games.length; i++){
 //Add new gifs with submit button
 $("#add-gif").on("click", function(event) {
     event.preventDefault();
-    var newGif = $("#new-gif").val().trim();
-    console.log(newGif);
-    games.push(newGif);
-    var button = $("<button>").text(newGif);
-    button.attr("data-game", newGif);
-    button.addClass("game-button");
-    $("#buttons").append(button);
+    var gameExists = false;
+    if (games.indexOf($("#new-gif").val().trim()) !== -1) {
+        gameExists = true;
+    }
+    if ($("#new-gif").val().trim() !== "" && gameExists === false) {
 
+        var newGif = $("#new-gif").val().trim().toLowerCase();
+        games.push(newGif);
+        var button = $("<button>").text(newGif);
+        button.attr("data-game", newGif);
+        button.addClass("game-button");
+        $("#buttons").append(button);
+    }
     $("#new-gif").val("");
-
+    
    
 });
 
 
 //On click function for calling gifs
+
 $(document.body).on("click", ".game-button", function() {
     var game = $(this).attr("data-game");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + 
