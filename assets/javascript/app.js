@@ -30,10 +30,10 @@ $("button").on("click", function() {
         var results = response.data;
         for (var i = 0; i < results.length; i++) {
             if (results[i].rating !== "r") {
-                var gifDiv = $("<div id='results'>")
+                var gifDiv = $("<div>")
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating);
-                var gameImage = $("<img>");
+                var gameImage = $("<img class='gif'>");
 
 
                 gameImage.attr("src", results[i].images.fixed_height_still.url);
@@ -47,8 +47,8 @@ $("button").on("click", function() {
                 $("#gif-group").prepend(gifDiv);
             }
         }
-    })
-})
+    });
+});
 
 
 //Add new gifs with submit button
@@ -56,3 +56,13 @@ $("button").on("click", function() {
 
 
 //Function for pausing/starting gifs when they're clicked
+$(document).on("click", ".gif", function() {
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
