@@ -16,9 +16,25 @@ for (var i=0; i < games.length; i++){
     button.addClass("game-button");
     $("#buttons").append(button);
 }
+//Add new gifs with submit button
+$("#add-gif").on("click", function(event) {
+    event.preventDefault();
+    var newGif = $("#new-gif").val().trim();
+    console.log(newGif);
+    games.push(newGif);
+    var button = $("<button>").text(newGif);
+    button.attr("data-game", newGif);
+    button.addClass("game-button");
+    $("#buttons").append(button);
+
+    $("#new-gif").val("");
+
+   
+});
+
 
 //On click function for calling gifs
-$("button").on("click", function() {
+$(document.body).on("click", ".game-button", function() {
     var game = $(this).attr("data-game");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + 
     game + "&api_key=326tZTOjHx2w5i7revWDUnIyufYTGjY7&limit=10";
@@ -51,7 +67,6 @@ $("button").on("click", function() {
 });
 
 
-//Add new gifs with submit button
 
 
 
