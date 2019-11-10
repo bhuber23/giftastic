@@ -7,8 +7,6 @@ var games = [
     "mario kart"
 ];
 
-console.log(games);
-
 //Create the buttons for each object in the array
 for (var i=0; i < games.length; i++){
     var button = $("<button>").text(games[i]);
@@ -71,9 +69,6 @@ $(document.body).on("click", ".game-button", function() {
         }
     });
 });
-
-
-
 
 
 //Function for pausing/starting gifs when they're clicked
