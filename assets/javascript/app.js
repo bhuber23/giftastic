@@ -13,7 +13,6 @@ var offset = 0;
 for (var i=0; i < games.length; i++){
     var button = $("<button>").text(games[i]);
     button.attr("data-game", games[i]);
-    //button.attr("data-offset", 0);
     button.addClass("game-button");
     $("#buttons").append(button);
 }
