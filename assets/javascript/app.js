@@ -2,15 +2,18 @@
 var games = [
     "pokemon",
     "mario",
-    "smash brothers",
+    "super smash brothers",
     "legend of zelda",
     "mario kart"
 ];
+
+var offset = 0;
 
 //Create the buttons for each object in the array
 for (var i=0; i < games.length; i++){
     var button = $("<button>").text(games[i]);
     button.attr("data-game", games[i]);
+    //button.attr("data-offset", 0);
     button.addClass("game-button");
     $("#buttons").append(button);
 }
@@ -31,17 +34,15 @@ $("#add-gif").on("click", function(event) {
         $("#buttons").append(button);
     }
     $("#new-gif").val("");
-    
-   
 });
 
-
 //On click function for calling gifs
-
 $(document.body).on("click", ".game-button", function() {
     var game = $(this).attr("data-game");
+    game = game.replace(" ", "+");
+    offset += 10;
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + 
-    game + "&api_key=326tZTOjHx2w5i7revWDUnIyufYTGjY7&limit=10";
+    game + "&offset=" + offset + "&api_key=326tZTOjHx2w5i7revWDUnIyufYTGjY7&limit=10";
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -49,12 +50,11 @@ $(document.body).on("click", ".game-button", function() {
     .then(function(response) {
         var results = response.data;
         for (var i = 0; i < results.length; i++) {
-            if (results[i].rating !== "r") {
+            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                 var gifDiv = $("<div id='results-div'>")
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating.toUpperCase());
                 var gameImage = $("<img class='gif'>");
-
 
                 gameImage.attr("src", results[i].images.fixed_height_still.url);
                 gameImage.attr("data-state", "still");
